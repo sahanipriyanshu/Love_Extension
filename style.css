@@ -29,7 +29,7 @@ body {
   inset: 0;
   z-index: 0;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   background-repeat: no-repeat;
   /* smooth fade-in when image loads */
   opacity: 0;
@@ -119,29 +119,33 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   CLOCK & DATE
+   CLOCK & DATE  — fixed top-left corner
 ══════════════════════════════════════════ */
 .clock-wrap {
+  position: fixed;
+  top: 18px;
+  left: 22px;
+  z-index: 20;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
+  align-items: flex-start;
+  gap: 2px;
 }
 
 #clock {
   font-family: 'Lato', sans-serif;
-  font-size: 3.8rem;
+  font-size: 1.4rem;
   font-weight: 300;
-  letter-spacing: 8px;
+  letter-spacing: 3px;
   color: #ffe0ee;
-  text-shadow: 0 0 22px rgba(255, 100, 160, 0.8);
+  text-shadow: 0 0 10px rgba(255, 100, 160, 0.7);
 }
 
 #date {
-  font-size: 0.88rem;
+  font-size: 0.68rem;
   font-weight: 300;
-  letter-spacing: 3px;
-  color: rgba(255, 200, 220, 0.7);
+  letter-spacing: 2px;
+  color: rgba(255, 200, 220, 0.65);
   text-transform: uppercase;
 }
 
