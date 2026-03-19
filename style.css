@@ -1,0 +1,261 @@
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  overflow: hidden;
+  position: relative;
+  /* fallback colour while image loads */
+  background-color: #1a0010;
+}
+
+/* ══════════════════════════════════════════
+   FULL-SCREEN BACKGROUND IMAGE  (set by JS)
+══════════════════════════════════════════ */
+#bg-image {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* smooth fade-in when image loads */
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+#bg-image.loaded {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════
+   DARK GRADIENT OVERLAY  (for text readability)
+══════════════════════════════════════════ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(20, 0, 10, 0.55) 50%,
+      rgba(0, 0, 0, 0.70) 100%);
+}
+
+/* ══════════════════════════════════════════
+   FLOATING HEARTS
+══════════════════════════════════════════ */
+#hearts-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heart-particle {
+  position: absolute;
+  bottom: -60px;
+  animation: floatHeart linear infinite;
+  opacity: 0;
+  user-select: none;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.85;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-110vh) scale(0.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════
+   MAIN FROSTED-GLASS CARD
+══════════════════════════════════════════ */
+.container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 2.2rem;
+  max-width: 640px;
+  width: 90%;
+
+  background: rgba(10, 0, 20, 0.45);
+  border: 1px solid rgba(255, 140, 180, 0.2);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 8px 48px rgba(180, 0, 80, 0.35),
+    inset 0 0 50px rgba(255, 60, 120, 0.06);
+
+  animation: fadeIn 1.3s ease;
+}
+
+/* ══════════════════════════════════════════
+   CLOCK & DATE
+══════════════════════════════════════════ */
+.clock-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+#clock {
+  font-family: 'Lato', sans-serif;
+  font-size: 3.8rem;
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: #ffe0ee;
+  text-shadow: 0 0 22px rgba(255, 100, 160, 0.8);
+}
+
+#date {
+  font-size: 0.88rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: rgba(255, 200, 220, 0.7);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   DIVIDER
+══════════════════════════════════════════ */
+.divider {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  gap: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 120, 160, 0.45), transparent);
+}
+
+.divider span {
+  font-size: 1.1rem;
+}
+
+/* ══════════════════════════════════════════
+   QUOTE CARD
+══════════════════════════════════════════ */
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.2rem 1.5rem;
+  background: rgba(255, 80, 130, 0.08);
+  border: 1px solid rgba(255, 120, 160, 0.15);
+  border-radius: 16px;
+  width: 100%;
+}
+
+.quote-label {
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 180, 210, 0.55);
+}
+
+.quote-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff5f8;
+  line-height: 1.6;
+  text-shadow: 0 2px 16px rgba(200, 0, 80, 0.5);
+  animation: popIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.quote-author {
+  font-size: 0.8rem;
+  color: rgba(255, 160, 200, 0.6);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════════════
+   COMPLIMENT
+══════════════════════════════════════════ */
+.compliment {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.25rem;
+  color: #ffb3d0;
+  text-shadow: 0 0 12px rgba(255, 100, 150, 0.4);
+  animation: fadeInUp 1.5s ease;
+}
+
+/* ══════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  65% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

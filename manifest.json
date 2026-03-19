@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Love Tab 💕",
+  "version": "3.0",
+  "description": "A romantic new tab made with love 💖",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://ik.imagekit.io/*",
+    "https://api.quotable.io/*"
+  ]
+}
